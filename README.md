@@ -24,7 +24,7 @@ Obsidian Global Mode Switcher는 Obsidian의 모든 열린 마크다운 탭에 �
 
 1.  이 GitHub 저장소를 `Code` 버튼을 클릭하여 `.zip` 파일로 다운로드합니다.
 2.  다운로드한 파일을 압축 해제합니다.
-3.  압축 해제된 폴더를 Obsidian Vault의 `.obsidian/plugins/` 경로 아래에 복사합니다. (예: `your-vault/.obsidian/plugins/obsidian-global-mode-switcher`)
+3.  압축 해제된 폴더를 Obsidian Vault의 `.obsidian/plugins/` 경로 아래에 복사합니다. (예: `your-vault/.obsidian/plugins/global-mode-switcher`)
     * `.obsidian` 폴더는 숨김 폴더일 수 있습니다.
 4.  Obsidian을 재시작합니다.
 5.  Obsidian 설정 (`Settings`) > `Community plugins`로 이동하여 "Global Mode Switcher"를 찾아서 활성화합니다.
