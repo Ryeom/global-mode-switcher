@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "global-mode-switcher",
+	"name": "Global mode swicher",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+	"description": "A plugin to globally control reading/editing modes across all open Markdown tabs in Obsidian, with ribbon icon toggle, command palette commands, and customizable notices.",
+	"author": "Ryeom",
+	"authorUrl": "https://github.com/Ryeom",
+	"isDesktopOnly": false,
+	"styles": "styles.css"
 }

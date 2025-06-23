@@ -1,94 +1,71 @@
-# Obsidian Sample Plugin
+# Obsidian Global Mode Switcher
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+![Obsidian Global Mode Switcher Icon Example](https://img.shields.io/badge/Status-Stable-brightgreen)
+Obsidian Global Mode Switcher는 Obsidian의 모든 열린 마크다운 탭에 대한 읽기/편집 모드를 전역적으로 제어할 수 있도록 도와주는 플러그인입니다. 한 번의 클릭으로 모든 문서의 보기 방식을 전환하거나, 특정 모드를 강제하여 작업 흐름을 일관되게 유지할 수 있습니다.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## ✨ 주요 기능
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+* **전역 모드 제어**:
+    * **기본 모드 (Default)**: 각 탭의 모드를 사용자가 개별적으로 제어할 수 있습니다.
+    * **읽기 전용 강제 (Force Read-only)**: 모든 열린 마크다운 탭을 읽기 모드로 고정합니다.
+    * **편집 가능 강제 (Force Editable)**: 모든 열린 마크다운 탭을 편집 모드로 고정합니다.
+* **리본 아이콘**: 왼쪽 리본에 모드 전환 아이콘이 생성되며, 클릭할 때마다 모드가 순환하고 아이콘도 현재 모드에 따라 변경됩니다.
+* **동적 툴팁**: 리본 아이콘에 마우스를 올리면 현재 적용된 전역 모드를 표시하는 툴팁이 나타납니다. (한국어/영어 지원)
+* **개별 탭 버튼 비활성화**: 전역 모드가 활성화되었을 때 (읽기/편집 강제 모드), 개별 탭 상단의 읽기/편집 모드 전환 버튼이 비활성화되어 전역 설정과의 충돌을 방지합니다.
+* **모바일 환경 지원**:
+    * 플러그인 시작 시 모바일 환경에서는 설정에 따라 모든 탭이 기본적으로 읽기 모드로 고정될 수 있습니다.
+    * 리본 아이콘은 모바일에서도 정상적으로 작동합니다.
+* **명령 팔레트 지원**: 명령 팔레트(`Ctrl/Cmd + P`)를 통해 특정 모드를 바로 설정하거나, 모드를 순환할 수 있습니다.
+* **설정 가능한 알림**: 모드 변경 시 화면 상단에 일시적인 알림 메시지를 표시할지 여부를 설정할 수 있습니다.
 
-## First time developing plugins?
+## 🚀 설치 방법
 
-Quick starting guide for new plugin devs:
+### 수동 설치 (Manual Installation)
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+1.  이 GitHub 저장소를 `Code` 버튼을 클릭하여 `.zip` 파일로 다운로드합니다.
+2.  다운로드한 파일을 압축 해제합니다.
+3.  압축 해제된 폴더를 Obsidian Vault의 `.obsidian/plugins/` 경로 아래에 복사합니다. (예: `your-vault/.obsidian/plugins/obsidian-global-mode-switcher`)
+    * `.obsidian` 폴더는 숨김 폴더일 수 있습니다.
+4.  Obsidian을 재시작합니다.
+5.  Obsidian 설정 (`Settings`) > `Community plugins`로 이동하여 "Global Mode Switcher"를 찾아서 활성화합니다.
 
-## Releasing new releases
+## 💡 사용 방법
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+1.  **리본 아이콘 사용**:
+    * Obsidian 왼쪽 리본에 새로 생성된 아이콘(기본적으로 눈 모양)을 클릭하여 모드를 순환합니다.
+    * 아이콘은 `눈` (기본), `책` (읽기 전용), `연필` (편집 가능) 모양으로 변경됩니다.
+    * 아이콘에 마우스를 올리면 현재 적용된 모드를 툴팁으로 확인할 수 있습니다.
+    * **팁**: 리본 아이콘은 드래그하여 원하는 위치로 옮길 수 있습니다.
+2.  **명령 팔레트 사용**:
+    * `Ctrl/Cmd + P`를 눌러 명령 팔레트를 엽니다.
+    * "Global Mode"를 검색하면 다음과 같은 명령어를 사용할 수 있습니다:
+        * `Global Mode: Set Global Mode: User Control (Default)`
+        * `Global Mode: Set Global Mode: Force Read-only`
+        * `Global Mode: Set Global Mode: Force Editable`
+        * `Global Mode: Cycle Global Mode`
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+## ⚙️ 플러그인 설정
 
-## Adding your plugin to the community plugin list
+Obsidian 설정 (`Settings`) > `Global Mode Switcher` 탭에서 다음 옵션을 설정할 수 있습니다.
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+* **Show Reading Mode Icon**: 리본에 모드 제어 아이콘을 표시할지 여부를 토글합니다. (기본값: 켜짐)
+* **Initial Mobile Mode**: 모바일 Obsidian 앱 시작 시 기본적으로 적용될 전역 모드를 설정합니다. (기본값: Force Read-only)
+* **Tooltip Language**: 리본 아이콘의 툴팁 언어를 선택합니다. (기본값: English)
+* **Show Mode Change Notices**: 전역 모드가 변경될 때 화면 상단에 알림 메시지를 표시할지 여부를 설정합니다. (기본값: 켜짐)
 
-## How to use
+## ⚠️ 알려진 제한 사항
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+* **리본 아이콘 위치**: 플러그인은 리본 아이콘의 특정 위치를 프로그래밍 방식으로 제어할 수 없습니다. 아이콘은 수동으로 드래그하여 재배치할 수 있습니다.
+* **상태 표시줄 (Status Bar) 아이콘**: 상태 표시줄에 아이콘을 추가할 수 있지만, 이 위치의 아이콘은 모바일 앱에서는 표시되지 않습니다. 따라서 플러그인의 주요 기능 아이콘은 리본에만 제공됩니다.
 
-## Manually installing the plugin
+## 🤝 기여 및 지원
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+버그를 발견하거나 새로운 기능 아이디어가 있다면, GitHub 저장소의 [Issues](링크 추가 예정)에 보고해주세요.
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+---
 
-## Funding URL
+### 저작권 (License)
 
-You can include funding URLs where people who use your plugin can financially support it.
+[MIT License](LICENSE.md)
 
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
-```
-
-If you have multiple URLs, you can also do:
-
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+---
