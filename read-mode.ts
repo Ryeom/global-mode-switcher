@@ -183,11 +183,13 @@ export default class ReadingModeController {
     }
 
     updateRibbonIcons() {
-        if (this.state !== ReadingModeState.DEFAULT) {
-            document.body.classList.add('global-mode-active');
-        } else {
-            document.body.classList.remove('global-mode-active');
-        }
+        setTimeout(() => {
+            if (this.state !== ReadingModeState.DEFAULT) {
+                document.body.classList.add('global-mode-active');
+            } else {
+                document.body.classList.remove('global-mode-active');
+            }
+        }, 0);
     }
 
     destroy() {

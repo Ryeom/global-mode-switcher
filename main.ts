@@ -26,7 +26,7 @@ export default class GlobalModeSwitcherPlugin extends Plugin {
 		this.readingModeController = new ReadingModeController(this);
 		this.readingModeController.init();
 
-		if (this.app.isMobile) {
+		if ((this.app as any).isMobile) {
 			this.readingModeController.state = this.settings.initialMobileMode;
 			this.readingModeController.applyModeToAllLeaves();
 			this.readingModeController.updateIcon();
